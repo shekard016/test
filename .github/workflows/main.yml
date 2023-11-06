@@ -1,39 +1,39 @@
 name: Cover
 on:
-  # Allow the workflow to be triggered manually using the GitHub API, CLI, or browser interface
-  workflow_dispatch:
-  # Trigger the workflow automatically on pushes to main
-  push:
-    branches: [ main ]
+ # Allow the workflow to be triggered manually using the GitHub API, CLI, or browser interface
+ workflow_dispatch:
+ # Trigger the workflow automatically on pushes to main
+ push:
+  branches: [ main ]
 concurrency:
-  # Only allow one run of the workflow per branch to run at a time
-  group: ${{ github.ref }}
-  cancel-in-progress: true
+ # Only allow one run of the workflow per branch to run at a time
+ group: ${{ github.ref }}
+ cancel-in-progress: true
 
 jobs:
-  Test:
-    runs-on: windows-latest
-    env:
-      JVM_ARGS: -Xmx4096m
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Compile project
-        run: gradle.build()()
-      # Get, unzip, and activate Diffblue Cover
-      - name: Download Diffblue Cover
-        run: |
-          mkdir -p "$RUNNER_TEMP/dcover"
-          cd "$RUNNER_TEMP/dcover"
-          curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
-          unzip -q "diffblue-cover-cli.zip"
-          rm -f "diffblue-cover-cli.zip"
-          echo "$RUNNER_TEMP/dcover" >> "$GITHUB_PATH"
-      - name: Activate Diffblue Cover
-        run: dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
+ Test:
+  runs-on: windows-latest
+  env:
+   JVM_ARGS: -Xmx4096m
+  steps:
+   - name: Checkout repository
+    uses: actions/checkout@v3
+    with:
+     fetch-depth: 0
+   - name: Compile project
+    run: gradle.build()()
+   # Get, unzip, and activate Diffblue Cover
+   - name: Download Diffblue Cover
+    run: |
+     mkdir -p "$RUNNER_TEMP/dcover"
+     cd "$RUNNER_TEMP/dcover"
+     curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
+     unzip -q "diffblue-cover-cli.zip"
+     rm -f "diffblue-cover-cli.zip"
+     echo "$RUNNER_TEMP/dcover" >> "$GITHUB_PATH"
+   - name: Activate Diffblue Cover
+    run: dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
 
-      # Generate tests with Diffblue Cover
-      - name: Generate tests
-        run: dcover generate --batch --working-directory  --output test-cases.java
+   # Generate tests with Diffblue Cover
+   - name: Generate tests
+    run: dcover generate --batch --working-directory --output test-cases.java
