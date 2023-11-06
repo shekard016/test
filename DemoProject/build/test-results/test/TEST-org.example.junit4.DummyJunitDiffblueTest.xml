@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.junit4.DummyJunitDiffblueTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-06T06:27:33" hostname="ALIPL3204" time="0.008">
+  <properties/>
+  <testcase name="testEquality" classname="org.example.junit4.DummyJunitDiffblueTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
