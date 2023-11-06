@@ -55,8 +55,10 @@ jobs:
           echo "$RUNNER_TEMP/dcover" >> "$GITHUB_PATH"
 
       - name: Activate Diffblue Cover
-        run: dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
+        run: |
+          dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
 
       # Generate tests with Diffblue Cover
       - name: Generate tests
-        run: dcover generate --batch --working-directory --output test-cases.java
+        run: |
+           dcover generate --batch --working-directory --output test-cases.java
