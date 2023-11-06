@@ -39,7 +39,7 @@ jobs:
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          unzip -q "diffblue-cover-cli.zip"
+          jar xvf diffblue-cover-cli.zip
 
       - name: Remove Diffblue Cover CLI zip file
         run: |
