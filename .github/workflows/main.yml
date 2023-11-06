@@ -26,6 +26,11 @@ jobs:
       - name: Compile project
         run: gradle build
       # Get, unzip, and activate Diffblue Cover
+      - name: Download Diffblue Cover
+        run: |
+          mkdir -p "$RUNNER_TEMP/dcover"
+
+          cd "$RUNNER_TEMP/dcover"
 
       - name: Redownload Diffblue Cover CLI zip file
         run: |
