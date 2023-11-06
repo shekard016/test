@@ -56,9 +56,9 @@ jobs:
 
       - name: Activate Diffblue Cover
         run: |
-          dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
+          dcover.bat activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
 
       # Generate tests with Diffblue Cover
       - name: Generate tests
         run: |
-           dcover generate --batch --working-directory --output test-cases.java
+           dcover create org.example.Addition --batch --working-directory --output test-cases.java
