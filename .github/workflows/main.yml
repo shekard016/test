@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Compile project
-        run: gradle --batch-mode --no-transfer-progress clean install -DskipTests
+        run: gradle --build-file --no-transfer-progress clean install -DskipTests
       # Get, unzip, and activate Diffblue Cover
       - name: Download Diffblue Cover
         run: |
