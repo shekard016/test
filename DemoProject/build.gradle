@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.1.0'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation "org.junit.vintage:junit-vintage-engine:5.8.1"
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:4.11.0'
+}
+
+jacoco {
+    toolVersion = '0.8.7'
+}
+
+// Jacoco Test task configuration
+test {
+    finalizedBy jacocoTestReport // Attach JaCoCo report generation to the test task
+    useJUnit()
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+// Define a Gradle property to control the execution of the optimizeTests task
+ext {
+    skipTestOptimizer = project.hasProperty('skipTestOptimizer') ? project.getProperty('skipTestOptimizer').toBoolean() : false
+}
+
+// Configure the optimizeTests task with required fields
+subprojects {
+    optimizeTests {
+        skip = skipTestOptimizer
+        // REQUIRED: Calculate the runtime classpath used to execute tests
+        classpath = sourceSets.test.runtimeClasspath
+    }
+
+    // Configure the updateTestFilter task to set the fields of any Test tasks
+    task updateTestFilter {
+        doLast {
+            if (!skipTestOptimizer && cover.allSelectedTests) {
+                tasks.withType(Test) {
+                    // Set selected filters in the test task
+                    filter.setIncludePatterns(cover.allSelectedTests)
+                    // Specify that test tasks will not fail if the optimizer finds no tests to execute
+                    filter.setFailOnNoMatchingTests(false)
+                }
+            }
+        }
+    }
+}
+
+// Specify dependencies to ensure the correct order of task execution
+subprojects {
+    updateTestFilter.dependsOn optimizeTests
+    test.dependsOn updateTestFilter
+
+    // The absolute path to your installed 'dcover' executable
+    optimizeTests.command = project.findProperty('com.diffblue.cover.command')
+    // The absolute path to the patch file for which optimal tests will be calculated
+    optimizeTests.patch = project.findProperty('com.diffblue.cover.patch')
+}
