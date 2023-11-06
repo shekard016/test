@@ -21,7 +21,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/checkout@v3
       - name: Initialize Gradle build
         run: gradle init
       - name: Compile project
@@ -32,10 +31,12 @@ jobs:
         run: |
           curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
 
-      - name: wait for 3 minutes
+      - name: Wait for 3 minutes
+        # This is not necessary, but it may be helpful to give the file time to download completely before unzipping it.
         run: |
-            echo "waiting for 5 minutes"
-            sleep 300
+          echo "Waiting for 3 minutes"
+          sleep 180
+
       - name: Unzip Diffblue Cover CLI zip file
         run: |
           unzip -q "diffblue-cover-cli.zip"
@@ -47,9 +48,10 @@ jobs:
       - name: Add Diffblue Cover directory to GITHUB_PATH
         run: |
           echo "$RUNNER_TEMP/dcover" >> "$GITHUB_PATH"
+
       - name: Activate Diffblue Cover
         run: dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
 
       # Generate tests with Diffblue Cover
       - name: Generate tests
-        run: dcover generate --batch --working-directory  --output test-cases.java
+        run: dcover generate --batch --working-directory --output test-cases.java
