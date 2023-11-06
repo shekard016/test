@@ -32,6 +32,10 @@ jobs:
         run: |
           curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
 
+      - name: wait for 3 minutes
+        run: |
+            echo "waiting for 5 minutes"
+            sleep 300
       - name: Unzip Diffblue Cover CLI zip file
         run: |
           unzip -q "diffblue-cover-cli.zip"
