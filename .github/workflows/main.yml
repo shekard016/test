@@ -1,0 +1,24 @@
+name: Cover
+on:
+  # Allow the workflow to be triggered manually using the GitHub API, CLI, or browser interface
+  workflow_dispatch:
+  # Trigger the workflow automatically on pushes to master
+  push:
+    branches: [main]
+concurrency:
+  # Only allow one run of the workflow per branch to run at a time
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  Test:
+    runs-on: ubuntu-22.04
+    env:
+      JVM_ARGS: -Xmx4096m
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Compile project
+        run: mvn --batch-mode --no-transfer-progress clean install -DskipTests"
