@@ -42,4 +42,4 @@ jobs:
 
       # Generate tests with Diffblue Cover
       - name: Generate tests
-        run: dcover generate --batch --working-directory moduleToTest
+        run: dcover generate --batch --working-directory moduleToTest --output test-cases.java
