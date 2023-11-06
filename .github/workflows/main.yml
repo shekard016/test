@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Compile project
-        run: gradle.build()
+        run: gradle.build()()
       # Get, unzip, and activate Diffblue Cover
       - name: Download Diffblue Cover
         run: |
