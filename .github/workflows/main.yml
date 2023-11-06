@@ -26,14 +26,13 @@ jobs:
       - name: Compile project
         run: gradle build
       # Get, unzip, and activate Diffblue Cover
+
       - name: Download Diffblue Cover
         run: |
           mkdir -p "$RUNNER_TEMP/dcover"
 
           cd "$RUNNER_TEMP/dcover"
 
-      - name: Redownload Diffblue Cover CLI zip file
-        run: |
           curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
 
       - name: Wait for 3 minutes
@@ -56,9 +55,9 @@ jobs:
 
       - name: Activate Diffblue Cover
         run: |
-          dcover.bat activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
+          dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
 
       # Generate tests with Diffblue Cover
       - name: Generate tests
         run: |
-           dcover create org.example.Addition --batch --working-directory --output test-cases.java
+          dcover create org.example.Addition --batch --working-directory --output test-cases.java
