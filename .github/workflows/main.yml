@@ -48,16 +48,6 @@ jobs:
         run: |
           ls
 
-      - name: Install 7-Zip
-        run: |
-          choco install 7zip
-          if: runner.os == 'Windows'
-
-      - name: Unzip Diffblue Cover CLI zip file
-        run: |
-         7z x diffblue-cover-cli.zip -oD:\a\DemoProject\DemoProject
-         if: runner.os == 'Windows'
-
       - name: Unzip Diffblue Cover CLI zip file
         run: |
           unzip diffblue-cover-cli.zip -d D:\a\DemoProject\DemoProject
