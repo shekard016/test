@@ -48,7 +48,7 @@ jobs:
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          unzip diffblue-cover-cli.zip
+          unzip *.zip
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
