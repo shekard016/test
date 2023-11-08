@@ -42,7 +42,7 @@ jobs:
 
       - name: change the directory
         run: |
-         echo  cd  D:\a\DemoProject\DemoProject\DemoProject && ls -al
+         echo  cd  D:\a\DemoProject\DemoProject\DemoProject && ls 
 
       - name: Print the list of dir
         run: |
