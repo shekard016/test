@@ -16,24 +16,53 @@ jobs:
     env:
       JVM_ARGS: -Xmx4096m
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Initialize Gradle build
+        run: gradle init
       - name: Compile project
         run: gradle build
       # Get, unzip, and activate Diffblue Cover
       - name: Download Diffblue Cover
         run: |
           mkdir -p "$RUNNER_TEMP/dcover"
+
           cd "$RUNNER_TEMP/dcover"
+
+      - name: Redownload Diffblue Cover CLI zip file
+        run: |
           curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
-          unzip -q "diffblue-cover-cli.zip"
-          rm -f "diffblue-cover-cli.zip"
+
+      - name: Print the list of dir
+        run: |
+          ls
+
+      - name: Wait for 3 minutes
+        # This is not necessary, but it may be helpful to give the file time to download completely before unzipping it.
+        run: |
+          echo "Waiting for 3 minutes"
+          sleep 180
+
+      - name: Unzip Diffblue Cover CLI zip file
+        run: |
+          jar xvf diffblue-cover-cli.zip
+
+      - name: Remove Diffblue Cover CLI zip file
+        run: |
+          Remove-Item -Path "diffblue-cover-cli.zip" -Force
+
+      - name: Add Diffblue Cover directory to GITHUB_PATH
+        run: |
           echo "$RUNNER_TEMP/dcover" >> "$GITHUB_PATH"
+
       - name: Activate Diffblue Cover
-        run: dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
+        run: |
+          dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
 
       # Generate tests with Diffblue Cover
       - name: Generate tests
-        run: dcover generate --batch --working-directory  --output test-cases.java
+        run: |
+          dcover create org.example.Addition --batch --working-directory --output test-cases.java
