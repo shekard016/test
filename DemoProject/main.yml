@@ -40,15 +40,9 @@ jobs:
         run: |
           ls
 
-      - name: Wait for 3 minutes
-        # This is not necessary, but it may be helpful to give the file time to download completely before unzipping it.
-        run: |
-          echo "Waiting for 3 minutes"
-          sleep 180
-
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          jar xvf diffblue-cover-cli.zip
+          unzip diffblue-cover-cli.zip
 
       - name: Remove Diffblue Cover CLI zip file
         run: |
