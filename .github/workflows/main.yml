@@ -28,9 +28,9 @@ jobs:
       # Get, unzip, and activate Diffblue Cover
       - name: Download Diffblue Cover
         run: |
-          mkdir -p "$RUNNER_TEMP/dcover"
+          mkdir -p "$RUNNER_TEMP/dcover/dcover.bat"
 
-          cd "$RUNNER_TEMP/dcover"
+          cd "$RUNNER_TEMP/dcover/dcover.bat"
 
       - name: Redownload Diffblue Cover CLI zip file
         run: |
@@ -51,7 +51,7 @@ jobs:
 
       - name: Add Diffblue Cover directory to GITHUB_PATH
         run: |
-          echo "$RUNNER_TEMP/dcover" >> "$GITHUB_PATH"
+          echo "$RUNNER_TEMP/dcover/dcover.bat" >> "$GITHUB_PATH"
 
       - name: Activate Diffblue Cover
         run: |
