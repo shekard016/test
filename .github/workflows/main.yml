@@ -34,7 +34,7 @@ jobs:
 
       - name: Redownload Diffblue Cover CLI zip file
         run: |
-          curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
+          curl --silent --show-error --location --output "diffblue-cover-cli.zip" "https://newsletters.diffblue.com/e3t/Ctc/DM+113/cSDxS04/VW5-nv5dT5nTW5fCPyw3tVtvSW1vWpFD55gYqQN8wLL5R5m_5PW7lCGcx6lZ3m6W92-wQH2rwSvcW4qVhnd3hZ-bcV-dHTN3P93WSW13rLDN5fzcJPW8sBnrM6mFk6LN337b0X7DmqRN580ph5BgP46W5bnBKS5_vcv8W6Qk5kc8yj5PRW7m_j8Z1D3sTPVVQR143dmgDGW4kWgNP6VKM-KW4LJFTy5vRmBWW8sVYF72wM6qHW36Q8hw2Gh0L1N2by4QZbr21gW7fy2Vm95H5V9W3xZRBw4ZFj_1W7CtmrX8Gg5klW3fnJMV6V23DjW5vzqL879R0lYW4p7cQV1l9XHFN13s4GJ4ZGJcW1JWY4-4k5Ry2W8Gz2K15f4TQlV_9G1-96dBYVW5Cj8w426Hg9-W4rDsJD8gbXXTW7c3wfh6Gqgs4W3vZTYz7J2w2PW2ZcMsC4TX8szVcsKv76m7Y5yW5_xb-j4XQkswVkP5cS7FMFNmW1L_mjd5rGRX5W4Y5Lc583fGfDW13CdHK7DHXj1W8qgyQy8tSbfNW7wBkHf3HpJG9W6Prj8M5MrC7Yf86f22-04"
 
       - name: Print the list of dir
         run: | 
