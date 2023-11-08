@@ -50,6 +50,14 @@ jobs:
         run: |
           jar xvf diffblue-cover-cli.zip
 
+      - name: Unzip Diffblue Cover CLI zip file
+        run: |
+          echo jar xvf diffblue-cover-cli.zip
+
+      - name: Unzip Diffblue Cover CLI zip file
+        run: |
+          ls
+
       - name: Remove Diffblue Cover CLI zip file
         run: |
           Remove-Item -Path "diffblue-cover-cli.zip" -Force
@@ -60,7 +68,7 @@ jobs:
 
       - name: Activate Diffblue Cover
         run: |
-          dcover activate "${{ secrets.DIFFBLUE_COVER_LICENSE_KEY }}"
+          dcover activate "H4TV-5PNA-ZMAJ-X8CO"
 
       # Generate tests with Diffblue Cover
       - name: Generate tests
