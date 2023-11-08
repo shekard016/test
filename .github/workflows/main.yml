@@ -40,7 +40,11 @@ jobs:
         run: |
           echo "Waiting for 3 minutes"
           sleep 180
-
+          
+      - name: Wait for 3 minutes
+        run: |
+           ls
+        
       - name: Unzip Diffblue Cover CLI zip file
         run: |
          unzip -q "diffblue-cover-cli.zip"
