@@ -42,7 +42,7 @@ jobs:
       - name: Unzip Diffblue Cover CLI zip file (with retry logic)
         retry:
           retries: 3
-        steps: |
+        run: |
           try:
             unzip diffblue-cover-cli.zip -d D:/a/DemoProject/DemoProject/diffblue-cover-cli
 
