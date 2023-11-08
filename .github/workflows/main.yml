@@ -37,7 +37,6 @@ jobs:
           curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
 
       - name: Wait for 3 minutes
-        # This is not necessary, but it may be helpful to give the file time to download completely before unzipping it.
         run: |
           echo "Waiting for 3 minutes"
           sleep 180
