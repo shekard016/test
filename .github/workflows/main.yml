@@ -40,9 +40,13 @@ jobs:
         run: |
           ls
 
+      - name: change dir
+        run: |
+          cd :\a\DemoProject\DemoProject
+
       - name: Print the list of dir
         run: |
-          cd 
+          ls
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
