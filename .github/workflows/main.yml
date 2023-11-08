@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   Test:
-    runs-on: windows-latest
+    runs-on: ubuntu-22.04
     env:
       JVM_ARGS: -Xmx4096m
     steps:
@@ -28,9 +28,9 @@ jobs:
       # Get, unzip, and activate Diffblue Cover
       - name: Download Diffblue Cover
         run: |
-          mkdir -p "$RUNNER_TEMP/dcover/dcover.bat"
+          mkdir -p "$RUNNER_TEMP/dcover"
 
-          cd "$RUNNER_TEMP/dcover/dcover.bat"
+          cd "$RUNNER_TEMP/dcover"
 
       - name: Redownload Diffblue Cover CLI zip file
         run: |
@@ -43,15 +43,15 @@ jobs:
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          jar xvf diffblue-cover-cli.zip
+         unzip -q "diffblue-cover-cli.zip"
 
       - name: Remove Diffblue Cover CLI zip file
         run: |
-          Remove-Item -Path "diffblue-cover-cli.zip" -Force
+         rm -f "diffblue-cover-cli.zip"
 
       - name: Add Diffblue Cover directory to GITHUB_PATH
         run: |
-          echo "$RUNNER_TEMP/dcover/dcover.bat" >> "$GITHUB_PATH"
+          echo "$RUNNER_TEMP/dcover" >> "$GITHUB_PATH"
 
       - name: Activate Diffblue Cover
         run: |
