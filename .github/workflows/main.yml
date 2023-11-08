@@ -42,7 +42,7 @@ jobs:
 
       - name: change the directory
         run: |
-          cd  D:\a\DemoProject\DemoProject
+         echo  cd  D:\a\DemoProject\DemoProject\DemoProject
 
       - name: Print the list of dir
         run: |
@@ -50,7 +50,7 @@ jobs:
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          unzip diffblue-cover-cli.zip -d D:/a/DemoProject/DemoProject
+          unzip diffblue-cover-cli.zip -d D:/a/DemoProject/DemoProject/diffblue-cover-cli
 
       - name: print the directory
         run: |
