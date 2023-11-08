@@ -50,7 +50,7 @@ jobs:
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          echo jar xvf diffblue-cover-cli.zip
+          echo unzip diffblue-cover-cli.zip
 
       - name: print the directory
         run: |
