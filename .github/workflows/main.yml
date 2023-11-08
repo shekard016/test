@@ -40,15 +40,17 @@ jobs:
         run: | 
           ls
 
-      - name: Wait for 3 minutes
-        # This is not necessary, but it may be helpful to give the file time to download completely before unzipping it.
+      - name: change the directory
         run: |
-          echo "Waiting for 3 minutes"
-          sleep 180
+          cd  D:\a\DemoProject\DemoProject
+
+      - name: Print the list of dir
+        run: |
+          ls 
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          unzip *.zip
+          unzip diffblue-cover-cli.zip
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
