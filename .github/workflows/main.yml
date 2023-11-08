@@ -50,7 +50,8 @@ jobs:
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          echo unzip diffblue-cover-cli.zip
+          unzip diffblue-cover-cli.zip
+          chmod -R 775 D:/a/DemoProject/DemoProject/diffblue-cover-cli
 
       - name: print the directory
         run: |
