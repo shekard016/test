@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   Test:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     env:
       JVM_ARGS: -Xmx4096m
     steps:
@@ -36,22 +36,23 @@ jobs:
         run: |
           curl --silent --show-error --location --output "diffblue-cover-cli.zip" "${{ secrets.DIFFBLUE_COVER_URL }}"
 
+      - name: Print the list of dir
+        run: | 
+          ls
+
       - name: Wait for 3 minutes
+        # This is not necessary, but it may be helpful to give the file time to download completely before unzipping it.
         run: |
           echo "Waiting for 3 minutes"
           sleep 180
-          
-      - name: Wait for 3 minutes
-        run: |
-           ls
-        
+
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-         unzip -q "diffblue-cover-cli.zip"
+          jar xvf diffblue-cover-cli.zip
 
       - name: Remove Diffblue Cover CLI zip file
         run: |
-         rm -f "diffblue-cover-cli.zip"
+          Remove-Item -Path "diffblue-cover-cli.zip" -Force
 
       - name: Add Diffblue Cover directory to GITHUB_PATH
         run: |
