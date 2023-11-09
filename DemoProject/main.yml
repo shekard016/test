@@ -40,7 +40,7 @@ jobs:
           ls
       - name: change dir
         run: |
-          cd D:\a\DemoProject\DemoProject
+          cd D:\a\DemoProject
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
