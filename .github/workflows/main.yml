@@ -40,13 +40,17 @@ jobs:
         run: |
           ls
 
-      - name: change dir
+      - name: print the content
         run: |
           cat diffblue-cover-cli.zip   
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
           unzip diffblue-cover-cli.zip
+
+      - name: list the directories
+        run: |
+          ls
 
       - name: Remove Diffblue Cover CLI zip file
         run: |
