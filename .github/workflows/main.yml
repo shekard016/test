@@ -62,7 +62,7 @@ jobs:
 
       - name: Activate Diffblue Cover
         run: |
-          dcover activate "H4TV-5PNA-ZMAJ-X8CO"
+          dcover.bat activate "H4TV-5PNA-ZMAJ-X8CO"
 
       # Generate tests with Diffblue Cover
       - name: Generate tests
