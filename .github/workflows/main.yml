@@ -42,7 +42,7 @@ jobs:
 
       - name: change dir
         run: |
-          cd D:\a\DemoProject
+          cd D:\a\DemoProject\DemoProject
 
       - name: change dir
         run: |
