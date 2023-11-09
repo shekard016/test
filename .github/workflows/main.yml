@@ -34,7 +34,7 @@ jobs:
 
       - name: Redownload Diffblue Cover CLI zip file
         run: |
-          curl --silent --show-error --location --output "diffblue-cover-cli.zip" "https://newsletters.diffblue.com/e3t/Ctc/DM+113/cSDxS04/VWqNRd1clLLkW29N02L52_D-RW5d86_w552HsPMGxfTK5m_5PW6N1X8z6lZ3m1W8lCX8k3x0JxHW2L4GXW66vzPWW5h4tY84P7Sy6W3Nf-ML9cCJ6nW7DH40d25CxDGN3trsz-zbqSGW6bG4M_1pqFB3W58Z-YT7Cg1fbW33GxMg4F3gB0W1d7JVm1Xy7B5W5mQpHM70tCzcW1RL-qN8nTGL0W1qhjhq3WPq1QW4kbd608TTQBMW1hKQM16hwhdfW3-46XM6RW1BdW6qSFvx2l-hNRW5yt71b8CYl2JW3fgHMF3K214gW65P5K95zrHl6W67b2V98yjMq0W54fRpq22VmHdW8w6Htp3qNXqXW1ggrxx1gHtFtW8YslSg7m7T3LN90_kT91QdY0VwtYMH7ydYCxMFLL_Cq5m0jW67Zslb46lbZMW7Tw9ML34YC15W33KT991wMgTFW5KbwNC6BdXqlW6Mbnnd3kfJJwW4WhnTX63Nc9pW3K-FC2313h3CW8zjwYH2qH49sW6V30_B8s8-1FW1KS0b76wWwGhf1YzG9z04"
+          curl --silent --show-error --location --output "diffblue-cover-cli.zip" "https://release.diffblue.com/2023.10.01/88bd072f1e783483a53e1fa7e53511d57b64a3b64e6f618c624f5a990409262f/diffblue-cover-cli-2023.10.01.zip"
 
       - name: Print the list of dir
         run: |
