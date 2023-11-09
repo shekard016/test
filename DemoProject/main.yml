@@ -34,13 +34,19 @@ jobs:
 
       - name: Redownload Diffblue Cover CLI zip file
         run: |
-          curl --silent --show-error --location --output "diffblue-cover-cli.zip" "https://release.diffblue.com/2023.10.01/88bd072f1e783483a53e1fa7e53511d57b64a3b64e6f618c624f5a990409262f/diffblue-cover-cli-2023.10.01.zip"
+          echo curl --silent --show-error --location --output "diffblue-cover-cli.zip" "https://release.diffblue.com/2023.10.01/88bd072f1e783483a53e1fa7e53511d57b64a3b64e6f618c624f5a990409262f/diffblue-cover-cli-2023.10.01.zip"
+
       - name: Print the list of dir
         run: |
           ls
+
       - name: change dir
         run: |
           cd D:\a\DemoProject
+
+      - name: change dir
+        run: |
+          cat diffblue-cover-cli.zip   
 
       - name: Unzip Diffblue Cover CLI zip file
         run: |
