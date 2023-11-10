@@ -18,7 +18,7 @@ jobs:
       - name: Set Environment Path Variable for Dcover directory
         uses: myci-actions/append-to-path-windows@2
         with:
-          path: D:\a\DemoProject\DemoProject\demo\dcover
+          path: D:\a\DemoProject\DemoProject\Diffblue\dcover
           env-var: PATH
       #- name: Check Path
       # run: echo $env:PATH
@@ -27,6 +27,7 @@ jobs:
         with:
           repository: path/DemoProject
           ref: main
+
       - name: Initialize Gradle build
         run: gradle init
 
@@ -36,25 +37,30 @@ jobs:
       # Get, unzip, and activate Diffblue Cover
       - name: Create demo/decover dir and Download Diffblue Cover into this dir
         run: |
-          mkdir demo/dcover
+          mkdir Diffblue/dcover
+
       - name: Redownload Diffblue Cover CLI zip files
         run: |
           curl --silent --show-error --location --output "diffblue-cover-cli.zip" "https://release.diffblue.com/2023.10.01/88bd072f1e783483a53e1fa7e53511d57b64a3b64e6f618c624f5a990409262f/diffblue-cover-cli-2023.10.01.zip"
+
       - name: list files and check present Working dir
         run: |
           ls
           pwd
+
       - name: Unzip Diffblue Cover CLI zip file
         run: |
-          unzip diffblue-cover-cli.zip -d demo/dcover
-          ls demo/dcover
+          unzip diffblue-cover-cli.zip -d Diffblue/dcover
+          ls Diffblue/dcover
+
       - name: Activate Diffblue Cover
         run: |
           #$env:Path
           dcover activate "H4TV-5PNA-ZMAJ-X8CO"
-        working-directory: D:\a\DemoProject\DemoProject\demo\dcover
+        working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
       # Generate tests with Diffblue Cover
+
       - name: Generate tests
         run: |
           dcover create org.example.Addition --batch --working-directory --output test-cases.java
-        working-directory: D:\a\DemoProject\DemoProject\demo\dcover
+        working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
