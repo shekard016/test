@@ -65,7 +65,7 @@ jobs:
 
           - name: Activate Diffblue Cover
             run: |
-              dcover activate H532-DV4M-B4SJ-WYCO
+              dcover activate H4TV-5PNA-ZMAJ-X8CO
             working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
 
           # Generate tests with Diffblue Cover
