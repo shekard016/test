@@ -29,11 +29,12 @@ jobs:
                 ref: main
 
           - name: Initialize Gradle build
-              run:|
+            run: |
                gradle init
 
           - name: Compile project
-            run: gradle build
+            run: |
+              gradle build
 
               # Get, unzip, and activate Diffblue Cover
           - name: Create demo/decover dir and Download Diffblue Cover into this dir
@@ -65,10 +66,10 @@ jobs:
           - name: Activate Diffblue Cover
             run: |
               dcover activate H4TV-5PNA-ZMAJ-X8CO
-              working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
+            working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
 
           # Generate tests with Diffblue Cover
           - name: Generate tests
             run: |    
               dcover create org.example.Addition --batch --working-directory --output Test-cases.java
-              working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
+            working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
