@@ -16,57 +16,59 @@ jobs:
     env:
       JVM_ARGS: -Xmx4096m
     steps:
+          - name: Set Environment Path Variable for Dcover directory
+            uses: myci-actions/append-to-path-windows@2
+            with:
+              path: D:\a\DemoProject\DemoProject\Diffblue\dcover
+              env-var: PATH
 
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Initialize Gradle build
-        run: gradle init
-      - name: Compile project
-        run: gradle build
-      # Get, unzip, and activate Diffblue Cover
-      - name: Download Diffblue Cover
-        run: |
-          mkdir -p "$RUNNER_TEMP/dcover"
+          - name: Checkout repository
+            uses: actions/checkout@v3
+            with:
+                repository: path/DemoProject
+                ref: main
 
-          cd "$RUNNER_TEMP/dcover"
+          - name: Initialize Gradle build
+              run:|
+               gradle init
 
-      - name: Redownload Diffblue Cover CLI zip file
-        run: |
-          curl --silent --show-error --location --output "diffblue-cover-cli.zip" "https://release.diffblue.com/2023.10.01/88bd072f1e783483a53e1fa7e53511d57b64a3b64e6f618c624f5a990409262f/diffblue-cover-cli-2023.10.01.zip"
+          - name: Compile project
+            run: gradle build
 
-      - name: Print the list of dir
-        run: |
-          ls
+              # Get, unzip, and activate Diffblue Cover
+          - name: Create demo/decover dir and Download Diffblue Cover into this dir
+            run: |
+                mkdir Diffblue/dcover
 
-      - name: print the content
-        run: |
-          cat diffblue-cover-cli.zip   
+          - name: Redownload Diffblue Cover CLI zip files
+            run: |
+                curl --silent --show-error --location --output "diffblue-cover-cli.zip" "https://release.diffblue.com/2023.10.01/88bd072f1e783483a53e1fa7e53511d57b64a3b64e6f618c624f5a990409262f/diffblue-cover-cli-2023.10.01.zip"
 
-      - name: Unzip Diffblue Cover CLI zip file
-        run: |
-          unzip diffblue-cover-cli.zip
+          - name: Print the list of dir
+            run: |
+              ls
+              pwd
 
-      - name: list the directories
-        run: |
-          ls
+          - name: print the content
+            run: |
+              cat diffblue-cover-cli.zip   
 
-      - name: Remove Diffblue Cover CLI zip file
-        run: |
-          Remove-Item -Path "diffblue-cover-cli.zip" -Force
+          - name: Unzip Diffblue Cover CLI zip file
+            run: |
+              unzip diffblue-cover-cli.zip -d Diffblue/dcover
 
-      - name: Add Diffblue Cover directory to GITHUB_PATH
-        run: |
-          echo "$RUNNER_TEMP/dcover" >> "$GITHUB_PATH"
+          - name: list the directories
+            run: |
+              ls Diffblue/dcover
 
-      - name: Activate Diffblue Cover
-        run: |
-          dcover activate H4TV-5PNA-ZMAJ-X8CO
-      
 
-      # Generate tests with Diffblue Cover
-      - name: Generate tests
-        run: |
-          
-          dcover create org.example.Addition --batch --working-directory --output test-cases.java
+          - name: Activate Diffblue Cover
+            run: |
+              dcover activate H4TV-5PNA-ZMAJ-X8CO
+              working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
+
+          # Generate tests with Diffblue Cover
+          - name: Generate tests
+            run: |    
+              dcover create org.example.Addition --batch --working-directory --output Test-cases.java
+              working-directory: D:\a\DemoProject\DemoProject\Diffblue\dcover
