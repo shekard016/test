@@ -72,4 +72,4 @@ jobs:
           - name: Generate tests
             run: |    
               dcover create org.example.Addition --batch --working-directory --output Test-cases.java
-            working-directory: D:\a\DemoProject\DemoProject\Diffblue
+            working-directory: D:\a\DemoProject\DemoProject
